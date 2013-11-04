@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
+      <dl>
+        <dt>Enter your URL:
+        <dd><input type=text size=100 name=original_url>
+        <dd><input type=submit name="Operation" value=Submit>
+      </dl>
+
+    </form>
+
+  <ul class=entries>
+  {% for entry in entries %}
+    <li><em>Your original URL: </em><font color="blue">{{ entry.original_url }}</font><em> Your shorten URL: </em><font color="blue">{{ entry.shorten_url}}</font>
+  {% else %}
+    <li><em>Unbelievable.  No URLs here so far</em>
+  {% endfor %}
+  </ul>
+
+  {% endif %}
+{% endblock %}
