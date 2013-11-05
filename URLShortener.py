@@ -86,7 +86,7 @@ def open_user_link(short):
     faurls = g.db.execute("select faurls from entries where shorten_url = ?", (q, ))
     f = faurls.fetchall()
     freq = g.db.execute("UPDATE entries SET faurls = ? where shorten_url = ?", (f[0][0]+1, q, ))
-    freq.fetchall()
+    g.db.commit()
 
     return redirect(url[0][0])
 
