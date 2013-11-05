@@ -4,7 +4,7 @@
     <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
       <dl>
         <dt>Enter your URL:
-        <dd><input type=text size=100 name=original_url>
+        <dd><input type=text size=70 name=original_url>
         <dd><input type=submit name="Operation" value=Submit>
       </dl>
 
@@ -12,7 +12,10 @@
 
   <ul class=entries>
   {% for entry in entries %}
-    <li><em>Your original URL: </em><font color="blue">{{ entry.original_url }}</font><em> Your shorten URL: </em><font color="blue">{{ entry.shorten_url}}</font>
+    <li><em>Your original URL: </em> <a href="{{ entry.original_url }}">{{ entry.original_url }}</a>
+    <li><em>Your shorten URL: </em> <a href="{{ entry.shorten_url}}">{{ entry.shorten_url}}</a>
+    <hr width=100%>
+
   {% else %}
     <li><em>Unbelievable.  No URLs here so far</em>
   {% endfor %}
