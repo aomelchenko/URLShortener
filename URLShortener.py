@@ -43,8 +43,8 @@ def teardown_request(exception):
 
 @app.route('/')
 def show_entries():
-    cur = g.db.execute('select original_url, shorten_url from entries order by id desc')
-    entries = [dict(original_url=row[0], shorten_url=row[1]) for row in cur.fetchall()]
+    cur = g.db.execute('select original_url, shorten_url, faurls from entries order by id desc')
+    entries = [dict(original_url=row[0], shorten_url=row[1], faurls=row[2]) for row in cur.fetchall()]
     return render_template('show_entries.html', entries=entries)
 
 @app.route('/add', methods=['POST'])
@@ -82,13 +82,13 @@ def logout():
 def open_user_link(short):
     q = 'http://127.0.0.1:5000/' + short
     cur = g.db.execute("select original_url from entries where shorten_url = ?", (q, ))
-    url = cur.fetchall()
+    url = cur.fetchone()
     faurls = g.db.execute("select faurls from entries where shorten_url = ?", (q, ))
-    f = faurls.fetchall()
-    freq = g.db.execute("UPDATE entries SET faurls = ? where shorten_url = ?", (f[0][0]+1, q, ))
+    f = faurls.fetchone()
+    freq = g.db.execute("UPDATE entries SET faurls = ? where shorten_url = ?", (f[0]+1, q, ))
     g.db.commit()
 
-    return redirect(url[0][0])
+    return redirect(url[0])
 
 
 if __name__ == '__main__':
