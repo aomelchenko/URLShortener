@@ -12,7 +12,7 @@ h2              { font-size: 1em; }
 .add-entry      { font-size: 0.9em; border-bottom: 1px solid #ccc; }
 .add-entry dl   { font-weight: bold; }
 .metanav        { text-align: center; font-size: 0.8em; padding: 0.3em;
-                  margin-bottom: 1em; width: 3.5em; background: #fafafa; }
+                  margin-bottom: 1em; width: 62em; background: #fafafa; }
 .flash          { background: #cee5F5; padding: 0.5em;
                   border: 1px solid #aacbe2; }
 .error          { background: #f0d6d6; padding: 0.5em; }
